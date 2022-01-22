@@ -79,6 +79,9 @@ namespace BuffUtil
                 HandleMoltenShell();
                 HandlePhaseRun();
                 HandleWitheringStep();
+                HandleWrath();
+                HandleZealotry();
+                HandleHatred();
             }
             catch (Exception ex)
             {
