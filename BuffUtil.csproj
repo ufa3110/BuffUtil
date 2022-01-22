@@ -33,6 +33,10 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExileCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Games\poe exile api\ExileCore.dll</HintPath>
+    </Reference>
     <Reference Include="SharpDX">
       <HintPath>..\..\..\PoeHelper\SharpDX.dll</HintPath>
       <Private>False</Private>

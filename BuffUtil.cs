@@ -27,6 +27,11 @@ namespace BuffUtil
         private DateTime? lastSteelSkinCast;
         private DateTime? lastImmortalCallCast;
         private DateTime? lastMoltenShellCast;
+        //my
+        private DateTime? lastWrathCast;
+        private DateTime? lastZealotryCast;
+        private DateTime? lastHatredCast;
+        //end my
         private float HPPercent;
         private float MPPercent;
         private int? nearbyMonsterCount;
@@ -83,6 +88,158 @@ namespace BuffUtil
                 }
             }
         }
+
+
+        // my stuff
+        private void HandleWrath()
+        {
+            try
+            {
+                if (!Settings.Wrath)
+                    return;
+
+                if (lastWrathCast.HasValue && currentTime - lastWrathCast.Value <
+                    C.Wrath.TimeBetweenCasts)
+                    return;
+
+                if (lastZealotryCast.HasValue && currentTime - lastZealotryCast.Value <
+                    C.Zealotry.TimeBetweenCasts)
+                    return;
+
+                if (lastHatredCast.HasValue && currentTime - lastHatredCast.Value <
+                    C.Hatred.TimeBetweenCasts)
+                    return;
+
+
+
+                var hasBuff = HasBuff(C.Wrath.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.Wrath.Name, C.Wrath.InternalName,
+                    Settings.WrathConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast Wrath - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("Wrath for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.WrathKey.Value);
+                lastWrathCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleWrath)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandleZealotry()
+        {
+            try
+            {
+                if (!Settings.Zealotry)
+                    return;
+
+                if (lastWrathCast.HasValue && currentTime - lastWrathCast.Value <
+                    C.Wrath.TimeBetweenCasts)
+                    return;
+
+                if (lastZealotryCast.HasValue && currentTime - lastZealotryCast.Value <
+                    C.Zealotry.TimeBetweenCasts)
+                    return;
+
+                if (lastHatredCast.HasValue && currentTime - lastHatredCast.Value <
+                    C.Hatred.TimeBetweenCasts)
+                    return;
+
+
+
+                var hasBuff = HasBuff(C.Zealotry.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.Zealotry.Name, C.Zealotry.InternalName,
+                    Settings.ZealotryConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast Zealotry - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("Zealotry for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.ZealotryKey.Value);
+                lastZealotryCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleZealotry)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandleHatred()
+        {
+            try
+            {
+                if (!Settings.Hatred)
+                    return;
+
+                if (lastWrathCast.HasValue && currentTime - lastWrathCast.Value <
+                    C.Wrath.TimeBetweenCasts)
+                    return;
+
+                if (lastZealotryCast.HasValue && currentTime - lastZealotryCast.Value <
+                    C.Zealotry.TimeBetweenCasts)
+                    return;
+
+                if (lastHatredCast.HasValue && currentTime - lastHatredCast.Value <
+                    C.Hatred.TimeBetweenCasts)
+                    return;
+
+
+
+                var hasBuff = HasBuff(C.Hatred.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.Hatred.Name, C.Hatred.InternalName,
+                    Settings.HatredConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast Hatred - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("Hatred for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.HatredKey.Value);
+                lastHatredCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleHatred)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        //my stuff end
+
 
         private void HandleBladeFlurry()
         {
@@ -435,6 +592,10 @@ namespace BuffUtil
                     LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleSteelSkin)}: {ex.StackTrace}", 3f);
             }
         }
+
+
+
+
 
         private bool OnPreExecute()
         {

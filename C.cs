@@ -53,6 +53,34 @@ namespace BuffUtil
             public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(1);
         }
 
+        //my add
+        public static class Wrath
+        {
+            public const string BuffName = "player_aura_lightning_damage";
+            public const string Name = "Wrath";
+            public const string InternalName = "wrath";
+            public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(1);
+        }
+
+        public static class Zealotry
+        {
+            public const string BuffName = "player_aura_spell_damage";
+            public const string Name = "SpellDamageAura";
+            public const string InternalName = "spell_damage_aura";
+            public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(1);
+        }
+        public static class Hatred
+        {
+            public const string BuffName = "player_aura_cold_damage";
+            public const string Name = "Hatred";
+            public const string InternalName = "hatred";
+            public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(1);
+        }
+
+
+
+        //my end
+
         public static class BladeFlurry
         {
             public const string BuffName = "charged_attack";

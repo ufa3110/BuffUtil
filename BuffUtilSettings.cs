@@ -54,6 +54,21 @@ namespace BuffUtil
             ScourgeArrowUseLeftClick = new ToggleNode(false);
             ScourgeArrowWaitForInfused = new ToggleNode(true);
 
+            //my added
+            Wrath = new ToggleNode(false);
+            WrathKey = new HotkeyNode(Keys.W);
+            WrathConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            Zealotry = new ToggleNode(false);
+            ZealotryKey = new HotkeyNode(Keys.W);
+            ZealotryConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            Hatred = new ToggleNode(false);
+            HatredKey = new HotkeyNode(Keys.W);
+            HatredConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            // my end
+
             RequireMinMonsterCount = new ToggleNode(false);
             NearbyMonsterCount = new RangeNode<int>(1, 1, 30);
             NearbyMonsterMaxDistance = new RangeNode<int>(500, 1, 2000);
@@ -61,6 +76,37 @@ namespace BuffUtil
             Debug = new ToggleNode(false);
             SilenceErrors = new ToggleNode(false);
         }
+
+        // my stuff
+        #region Wrath
+        [Menu("wrath", 11)] public ToggleNode Wrath { get; set; }
+
+        [Menu("wrath  Key", 111, 11)]
+        public HotkeyNode WrathKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 112, 11)]
+        public RangeNode<int> WrathConnectedSkill { get; set; }
+        #endregion
+
+        #region Zealotry
+        [Menu("Zealotry", 12)] public ToggleNode Zealotry { get; set; }
+
+        [Menu("Zealotry  Key", 121, 12)] public HotkeyNode ZealotryKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 122, 12)]
+        public RangeNode<int> ZealotryConnectedSkill { get; set; }
+        #endregion
+
+        #region Hatred
+        [Menu("Hatred", 13)] public ToggleNode Hatred { get; set; }
+
+        [Menu("Hatred  Key", 131, 13)] public HotkeyNode HatredKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 132, 13)]
+        public RangeNode<int> HatredConnectedSkill { get; set; }
+        #endregion
+
+        //end my stuff
 
         #region Blood Rage
 
