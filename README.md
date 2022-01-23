@@ -1,6 +1,9 @@
 # BuffUtil-my-hacks
 
 todo
+
+
+added all below but i think its better to add them to copilot since the programm logic is better  
 auras:
 
 
@@ -23,3 +26,5 @@ Clarity 13/1 Default  1
 Vaal Discipline 20/0 Default  1 has not buff
 Vaal Grace 20/0 Default  1 has not buff
 Vaal Molten Shell 20/0 Default  1
+
+add copilot gcd

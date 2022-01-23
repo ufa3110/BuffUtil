@@ -67,6 +67,62 @@ namespace BuffUtil
             HatredKey = new HotkeyNode(Keys.W);
             HatredConnectedSkill = new RangeNode<int>(1, 1, 13);
 
+            Haste = new ToggleNode(false);
+            HasteKey = new HotkeyNode(Keys.W);
+            HasteConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            Discipline = new ToggleNode(false);
+            DisciplineKey = new HotkeyNode(Keys.W);
+            DisciplineConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            Grace = new ToggleNode(false);
+            GraceKey = new HotkeyNode(Keys.W);
+            GraceConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            Determination = new ToggleNode(false);
+            DeterminationKey = new HotkeyNode(Keys.W);
+            DeterminationConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            DefianceBanner = new ToggleNode(false);
+            DefianceBannerKey = new HotkeyNode(Keys.W);
+            DefianceBannerConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            PurityOfIce = new ToggleNode(false);
+            PurityOfIceKey = new HotkeyNode(Keys.W);
+            PurityOfIceConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            PurityOfFire = new ToggleNode(false);
+            PurityOfFireKey = new HotkeyNode(Keys.W);
+            PurityOfFireConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            PurityOfLightning = new ToggleNode(false);
+            PurityOfLightningKey = new HotkeyNode(Keys.W);
+            PurityOfLightningConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            Vitality = new ToggleNode(false);
+            VitalityKey = new HotkeyNode(Keys.W);
+            VitalityConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            Precision = new ToggleNode(false);
+            PrecisionKey = new HotkeyNode(Keys.W);
+            PrecisionConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            Clarity = new ToggleNode(false);
+            ClarityKey = new HotkeyNode(Keys.W);
+            ClarityConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            VaalDiscipline = new ToggleNode(false);
+            VaalDisciplineKey = new HotkeyNode(Keys.W);
+            VaalDisciplineConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            VaalGrace = new ToggleNode(false);
+            VaalGraceKey = new HotkeyNode(Keys.W);
+            VaalGraceConnectedSkill = new RangeNode<int>(1, 1, 13);
+
+            VaalMoltenShell = new ToggleNode(false);
+            VaalMoltenShellKey = new HotkeyNode(Keys.W);
+            VaalMoltenShellConnectedSkill = new RangeNode<int>(1, 1, 13);
+
             // my end
 
             RequireMinMonsterCount = new ToggleNode(false);
@@ -105,6 +161,132 @@ namespace BuffUtil
         [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 132, 13)]
         public RangeNode<int> HatredConnectedSkill { get; set; }
         #endregion
+
+        #region Haste
+        [Menu("Haste", 14)] public ToggleNode Haste { get; set; }
+
+        [Menu("Haste  Key", 141, 14)] public HotkeyNode HasteKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 142, 14)]
+        public RangeNode<int> HasteConnectedSkill { get; set; }
+        #endregion
+
+        #region Discipline
+        [Menu("Discipline", 15)] public ToggleNode Discipline { get; set; }
+
+        [Menu("Discipline  Key", 151, 15)] public HotkeyNode DisciplineKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 152, 15)]
+        public RangeNode<int> DisciplineConnectedSkill { get; set; }
+        #endregion
+
+        #region Grace
+        [Menu("Grace", 16)] public ToggleNode Grace { get; set; }
+
+        [Menu("Grace  Key", 161, 16)] public HotkeyNode GraceKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 162, 16)]
+        public RangeNode<int> GraceConnectedSkill { get; set; }
+        #endregion
+
+        #region Determination
+        [Menu("Determination", 17)] public ToggleNode Determination { get; set; }
+
+        [Menu("Determination  Key", 171, 17)] public HotkeyNode DeterminationKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 172, 17)]
+        public RangeNode<int> DeterminationConnectedSkill { get; set; }
+        #endregion
+
+        #region DefianceBanner
+        [Menu("DefianceBanner", 18)] public ToggleNode DefianceBanner { get; set; }
+
+        [Menu("DefianceBanner  Key", 181, 18)] public HotkeyNode DefianceBannerKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 182, 18)]
+        public RangeNode<int> DefianceBannerConnectedSkill { get; set; }
+        #endregion
+
+        #region PurityOfIce
+        [Menu("PurityOfIce", 19)] public ToggleNode PurityOfIce { get; set; }
+
+        [Menu("PurityOfIce  Key", 191, 19)] public HotkeyNode PurityOfIceKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 192, 19)]
+        public RangeNode<int> PurityOfIceConnectedSkill { get; set; }
+        #endregion
+
+        #region PurityOfLightning
+        [Menu("PurityOfLightning", 20)] public ToggleNode PurityOfLightning { get; set; }
+
+        [Menu("PurityOfLightning  Key", 201, 20)] public HotkeyNode PurityOfLightningKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 202, 20)]
+        public RangeNode<int> PurityOfLightningConnectedSkill { get; set; }
+        #endregion
+
+        #region PurityOfFire
+        [Menu("PurityOfFire", 21)] public ToggleNode PurityOfFire { get; set; }
+
+        [Menu("PurityOfFire  Key", 211, 21)] public HotkeyNode PurityOfFireKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 212, 21)]
+        public RangeNode<int> PurityOfFireConnectedSkill { get; set; }
+        #endregion
+
+        #region Vitality
+        [Menu("Vitality", 22)] public ToggleNode Vitality { get; set; }
+
+        [Menu("Vitality  Key", 221, 22)] public HotkeyNode VitalityKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 222, 22)]
+        public RangeNode<int> VitalityConnectedSkill { get; set; }
+        #endregion
+
+        #region Precision
+        [Menu("Precision", 23)] public ToggleNode Precision { get; set; }
+
+        [Menu("Precision  Key", 231, 23)] public HotkeyNode PrecisionKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 232, 23)]
+        public RangeNode<int> PrecisionConnectedSkill { get; set; }
+        #endregion
+
+        #region Clarity
+        [Menu("Clarity", 24)] public ToggleNode Clarity { get; set; }
+
+        [Menu("Clarity  Key", 241, 24)] public HotkeyNode ClarityKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 242, 24)]
+        public RangeNode<int> ClarityConnectedSkill { get; set; }
+        #endregion
+
+        #region VaalDiscipline
+        [Menu("VaalDiscipline", 25)] public ToggleNode VaalDiscipline { get; set; }
+
+        [Menu("VaalDiscipline  Key", 251, 25)] public HotkeyNode VaalDisciplineKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 252, 25)]
+        public RangeNode<int> VaalDisciplineConnectedSkill { get; set; }
+        #endregion
+
+        #region VaalGrace
+        [Menu("VaalGrace", 26)] public ToggleNode VaalGrace { get; set; }
+
+        [Menu("VaalGrace  Key", 261, 26)] public HotkeyNode VaalGraceKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 262, 26)]
+        public RangeNode<int> VaalGraceConnectedSkill { get; set; }
+        #endregion
+
+        #region VaalMoltenShell
+        [Menu("VaalMoltenShell", 27)] public ToggleNode VaalMoltenShell { get; set; }
+
+        [Menu("VaalMoltenShell  Key", 271, 27)] public HotkeyNode VaalMoltenShellKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 272, 27)]
+        public RangeNode<int> VaalMoltenShellConnectedSkill { get; set; }
+        #endregion	
 
         //end my stuff
 

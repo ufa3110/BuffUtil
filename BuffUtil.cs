@@ -31,6 +31,26 @@ namespace BuffUtil
         private DateTime? lastWrathCast;
         private DateTime? lastZealotryCast;
         private DateTime? lastHatredCast;
+
+        private DateTime? lastHasteCast;
+        private DateTime? lastDisciplineCast;
+        private DateTime? lastGraceCast;
+        private DateTime? lastDeterminationCast;
+        private DateTime? lastDefianceBannerCast;
+
+        private DateTime? lastPurityOfIceCast;
+        private DateTime? lastPurityOfLightningCast;
+        private DateTime? lastPurityOfFireCast;
+        private DateTime? lastVitalityCast;
+        private DateTime? lastPrecisionCast;
+        private DateTime? lastClarityCast;
+
+        private DateTime? lastVaalDisciplineCast;
+        private DateTime? lastVaalGraceCast;
+        private DateTime? lastVaalMoltenShellCast;
+
+
+
         //end my
         private float HPPercent;
         private float MPPercent;
@@ -79,9 +99,26 @@ namespace BuffUtil
                 HandleMoltenShell();
                 HandlePhaseRun();
                 HandleWitheringStep();
+
                 HandleWrath();
                 HandleZealotry();
                 HandleHatred();
+
+                HandleHaste();
+                HandleDiscipline();
+                HandleGrace();
+                HandleDetermination();
+                HandleDefianceBanner();
+                HandlePurityOfIce();
+                HandlePurityOfLightning();
+                HandlePurityOfFire();
+                HandleVitality();
+                HandlePrecision();
+                HandleClarity();
+
+                HandleVaalDiscipline();
+                HandleVaalGrace();
+                HandleVaalMoltenShell();
             }
             catch (Exception ex)
             {
@@ -94,6 +131,7 @@ namespace BuffUtil
 
 
         // my stuff
+        // handle warath zeal and hatred also check each other for march of the legion boots
         private void HandleWrath()
         {
             try
@@ -240,6 +278,557 @@ namespace BuffUtil
                     LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleHatred)}: {ex.StackTrace}", 3f);
             }
         }
+
+        private void HandleHaste()
+        {
+            try
+            {
+                if (!Settings.Haste)
+                    return;
+
+                if (lastHasteCast.HasValue && currentTime - lastHasteCast.Value <
+                    C.Haste.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.Haste.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.Haste.Name, C.Haste.InternalName,
+                    Settings.HasteConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast Haste - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("Haste for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.HasteKey.Value);
+                lastHasteCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleHaste)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandleDiscipline()
+        {
+            try
+            {
+                if (!Settings.Discipline)
+                    return;
+
+                if (lastDisciplineCast.HasValue && currentTime - lastDisciplineCast.Value <
+                    C.Discipline.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.Discipline.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.Discipline.Name, C.Discipline.InternalName,
+                    Settings.DisciplineConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast Discipline - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("Discipline for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.DisciplineKey.Value);
+                lastDisciplineCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleDiscipline)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandleGrace()
+        {
+            try
+            {
+                if (!Settings.Grace)
+                    return;
+
+                if (lastGraceCast.HasValue && currentTime - lastGraceCast.Value <
+                    C.Grace.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.Grace.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.Grace.Name, C.Grace.InternalName,
+                    Settings.GraceConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast Grace - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("Grace for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.GraceKey.Value);
+                lastGraceCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleGrace)}: {ex.StackTrace}", 3f);
+            }
+        }
+        private void HandleDetermination()
+        {
+            try
+            {
+                if (!Settings.Determination)
+                    return;
+
+                if (lastDeterminationCast.HasValue && currentTime - lastDeterminationCast.Value <
+                    C.Determination.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.Determination.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.Determination.Name, C.Determination.InternalName,
+                    Settings.DeterminationConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast Determination - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("Determination for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.DeterminationKey.Value);
+                lastDeterminationCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleDetermination)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+
+        private void HandleDefianceBanner()
+        {
+            try
+            {
+                if (!Settings.DefianceBanner)
+                    return;
+
+                if (lastDefianceBannerCast.HasValue && currentTime - lastDefianceBannerCast.Value <
+                    C.DefianceBanner.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.DefianceBanner.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.DefianceBanner.Name, C.DefianceBanner.InternalName,
+                    Settings.DefianceBannerConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast DefianceBanner - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("DefianceBanner for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.DefianceBannerKey.Value);
+                lastDefianceBannerCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleDefianceBanner)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandlePurityOfIce()
+        {
+            try
+            {
+                if (!Settings.PurityOfIce)
+                    return;
+
+                if (lastPurityOfIceCast.HasValue && currentTime - lastPurityOfIceCast.Value <
+                    C.PurityOfIce.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.PurityOfIce.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.PurityOfIce.Name, C.PurityOfIce.InternalName,
+                    Settings.PurityOfIceConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast PurityOfIce - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("PurityOfIce for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.PurityOfIceKey.Value);
+                lastPurityOfIceCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandlePurityOfIce)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandlePurityOfLightning()
+        {
+            try
+            {
+                if (!Settings.PurityOfLightning)
+                    return;
+
+                if (lastPurityOfLightningCast.HasValue && currentTime - lastPurityOfLightningCast.Value <
+                    C.PurityOfLightning.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.PurityOfLightning.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.PurityOfLightning.Name, C.PurityOfLightning.InternalName,
+                    Settings.PurityOfLightningConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast PurityOfLightning - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("PurityOfLightning for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.PurityOfLightningKey.Value);
+                lastPurityOfLightningCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandlePurityOfLightning)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandlePurityOfFire()
+        {
+            try
+            {
+                if (!Settings.PurityOfFire)
+                    return;
+
+                if (lastPurityOfFireCast.HasValue && currentTime - lastPurityOfFireCast.Value <
+                    C.PurityOfFire.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.PurityOfFire.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.PurityOfFire.Name, C.PurityOfFire.InternalName,
+                    Settings.PurityOfFireConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast PurityOfFire - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("PurityOfFire for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.PurityOfFireKey.Value);
+                lastPurityOfFireCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandlePurityOfFire)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+
+        private void HandleVitality()
+        {
+            try
+            {
+                if (!Settings.Vitality)
+                    return;
+
+                if (lastVitalityCast.HasValue && currentTime - lastVitalityCast.Value <
+                    C.Vitality.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.Vitality.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.Vitality.Name, C.Vitality.InternalName,
+                    Settings.VitalityConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast Vitality - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("Vitality for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.VitalityKey.Value);
+                lastVitalityCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleVitality)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandlePrecision()
+        {
+            try
+            {
+                if (!Settings.Precision)
+                    return;
+
+                if (lastPrecisionCast.HasValue && currentTime - lastPrecisionCast.Value <
+                    C.Precision.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.Precision.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.Precision.Name, C.Precision.InternalName,
+                    Settings.PrecisionConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast Precision - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("Precision for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.PrecisionKey.Value);
+                lastPrecisionCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandlePrecision)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+
+        private void HandleClarity()
+        {
+            try
+            {
+                if (!Settings.Clarity)
+                    return;
+
+                if (lastClarityCast.HasValue && currentTime - lastClarityCast.Value <
+                    C.Clarity.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.Clarity.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.Clarity.Name, C.Clarity.InternalName,
+                    Settings.ClarityConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast Clarity - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("Clarity for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.ClarityKey.Value);
+                lastClarityCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleClarity)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandleVaalDiscipline()
+        {
+            try
+            {
+                if (!Settings.VaalDiscipline)
+                    return;
+
+                if (lastVaalDisciplineCast.HasValue && currentTime - lastVaalDisciplineCast.Value <
+                    C.VaalDiscipline.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.VaalDiscipline.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.VaalDiscipline.Name, C.VaalDiscipline.InternalName,
+                    Settings.VaalDisciplineConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast VaalDiscipline - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("VaalDiscipline for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.VaalDisciplineKey.Value);
+                lastVaalDisciplineCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleVaalDiscipline)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandleVaalGrace()
+        {
+            try
+            {
+                if (!Settings.VaalGrace)
+                    return;
+
+                if (lastVaalGraceCast.HasValue && currentTime - lastVaalGraceCast.Value <
+                    C.VaalGrace.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.VaalGrace.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.VaalGrace.Name, C.VaalGrace.InternalName,
+                    Settings.VaalGraceConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast VaalGrace - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("VaalGrace for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.VaalGraceKey.Value);
+                lastVaalGraceCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleVaalGrace)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandleVaalMoltenShell()
+        {
+            try
+            {
+                if (!Settings.VaalMoltenShell)
+                    return;
+
+                if (lastVaalMoltenShellCast.HasValue && currentTime - lastVaalMoltenShellCast.Value <
+                    C.VaalMoltenShell.TimeBetweenCasts)
+                    return;
+
+                var hasBuff = HasBuff(C.VaalMoltenShell.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.VaalMoltenShell.Name, C.VaalMoltenShell.InternalName,
+                    Settings.VaalMoltenShellConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast VaalMoltenShell - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("VaalMoltenShell for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.VaalMoltenShellKey.Value);
+                lastVaalMoltenShellCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleVaalMoltenShell)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+
+
 
         //my stuff end
 
