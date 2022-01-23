@@ -18,6 +18,7 @@ namespace BuffUtil
 
         private List<Buff> buffs;
         private List<ActorSkill> skills;
+        private List<ActorVaalSkill> vaalSkills;
         private DateTime? currentTime;
         private InputSimulator inputSimulator;
         private Random rand;
@@ -795,6 +796,8 @@ namespace BuffUtil
             {
                 if (!Settings.VaalMoltenShell)
                     return;
+                // todo vaal souls check
+                //var vaalSouls = ExileCore.PoEMemory.MemoryObjects.ActorVaalSkill.CurrVaalSouls
 
                 if (lastVaalMoltenShellCast.HasValue && currentTime - lastVaalMoltenShellCast.Value <
                     C.VaalMoltenShell.TimeBetweenCasts)
@@ -1226,8 +1229,8 @@ namespace BuffUtil
                 if (skills == null || skills.Count == 0)
                     return false;
 
-                currentTime = DateTime.UtcNow;
 
+                 
                 HPPercent = 100f * playerLife.HPPercentage;
                 MPPercent = 100f * playerLife.MPPercentage;
                 ESPercent = 100f * playerLife.ESPercentage;
