@@ -7,6 +7,8 @@ ExileCore.PoEMemory.MemoryObjects.ActorVaalSkill.CurrVaalSouls
 
 es hp chck and chaos innoculation 
 
+add copilot gcd
+
 move all to copilot?
 
 # added all below 
@@ -33,4 +35,4 @@ Vaal Discipline 20/0 Default  1 has not buff
 Vaal Grace 20/0 Default  1 has not buff
 Vaal Molten Shell 20/0 Default  1
 
-add copilot gcd
+
