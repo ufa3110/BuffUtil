@@ -1,14 +1,15 @@
 # BuffUtil-my-hacks
 
-todo
+# todo
 vaal souls check
+
 ExileCore.PoEMemory.MemoryObjects.ActorVaalSkill.CurrVaalSouls
 
 es hp chck and chaos innoculation 
 
 move all to copilot?
 
-added all below but i think its better to add them to copilot since the programm logic is better  
+# added all below 
 auras:
 
 
