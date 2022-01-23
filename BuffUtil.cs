@@ -54,6 +54,7 @@ namespace BuffUtil
         //end my
         private float HPPercent;
         private float MPPercent;
+        private float ESPercent; // add by me
         private int? nearbyMonsterCount;
         private bool showErrors = true;
         private Stopwatch movementStopwatch { get; set; } = new Stopwatch();
@@ -799,6 +800,9 @@ namespace BuffUtil
                     C.VaalMoltenShell.TimeBetweenCasts)
                     return;
 
+                if (ESPercent > Settings.VaalMoltenShellMaxES.Value)
+                    return;
+
                 var hasBuff = HasBuff(C.VaalMoltenShell.BuffName);
                 if (!hasBuff.HasValue || hasBuff.Value)
                     return;
@@ -1226,7 +1230,8 @@ namespace BuffUtil
 
                 HPPercent = 100f * playerLife.HPPercentage;
                 MPPercent = 100f * playerLife.MPPercentage;
-                
+                ESPercent = 100f * playerLife.ESPercentage;
+
                 var playerActor = player.GetComponent<Actor>();
                 if (player != null && player.Address != 0 && playerActor.isMoving)
                 {

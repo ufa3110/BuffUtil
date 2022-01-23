@@ -122,6 +122,8 @@ namespace BuffUtil
             VaalMoltenShell = new ToggleNode(false);
             VaalMoltenShellKey = new HotkeyNode(Keys.W);
             VaalMoltenShellConnectedSkill = new RangeNode<int>(1, 1, 13);
+            VaalMoltenShellMaxHP = new RangeNode<int>(50, 0, 100);
+            VaalMoltenShellMaxES = new RangeNode<int>(50, 0, 100);
 
             // my end
 
@@ -284,8 +286,13 @@ namespace BuffUtil
 
         [Menu("VaalMoltenShell  Key", 271, 27)] public HotkeyNode VaalMoltenShellKey { get; set; }
 
-        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 272, 27)]
+        [Menu("currently logic is for chaos inoculation", 272, 27)]
         public RangeNode<int> VaalMoltenShellConnectedSkill { get; set; }
+
+         [Menu("Max ES", "Es percent above which skill is not cast", 273, 27)]
+        public RangeNode<int> VaalMoltenShellMaxES { get; set; }
+
+
         #endregion	
 
         //end my stuff
