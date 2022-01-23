@@ -122,7 +122,7 @@ namespace BuffUtil
             VaalMoltenShell = new ToggleNode(false);
             VaalMoltenShellKey = new HotkeyNode(Keys.W);
             VaalMoltenShellConnectedSkill = new RangeNode<int>(1, 1, 13);
-            VaalMoltenShellMaxHP = new RangeNode<int>(50, 0, 100);
+           // not used atm VaalMoltenShellMaxHP = new RangeNode<int>(50, 0, 100);
             VaalMoltenShellMaxES = new RangeNode<int>(50, 0, 100);
 
             // my end
@@ -289,7 +289,7 @@ namespace BuffUtil
         [Menu("currently logic is for chaos inoculation", 272, 27)]
         public RangeNode<int> VaalMoltenShellConnectedSkill { get; set; }
 
-         [Menu("Max ES", "Es percent above which skill is not cast", 273, 27)]
+        [Menu("Max ES", "Es percent above which skill is not cast", 273, 27)]
         public RangeNode<int> VaalMoltenShellMaxES { get; set; }
 
 
