@@ -289,7 +289,7 @@ namespace BuffUtil
         [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 272, 27)]
         public RangeNode<int> VaalMoltenShellConnectedSkill { get; set; }
 
-        [Menu("Max ES", "Es percent above which skill is not cast" `n "currently logic is for chaos inoculation", 273, 27)]
+        [Menu("Max ES", "Es percent above which skill is not cast currently logic is for chaos inoculation", 273, 27)]
         public RangeNode<int> VaalMoltenShellMaxES { get; set; }
 
 
