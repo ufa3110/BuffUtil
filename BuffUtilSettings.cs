@@ -119,11 +119,18 @@ namespace BuffUtil
             VaalGraceKey = new HotkeyNode(Keys.W);
             VaalGraceConnectedSkill = new RangeNode<int>(1, 1, 13);
 
+            xyz = new ToggleNode(false);
+            xyzKey = new HotkeyNode(Keys.R);
+            xyzConnectedSkill = new RangeNode<int>(1, 1, 13);
+
             VaalMoltenShell = new ToggleNode(false);
             VaalMoltenShellKey = new HotkeyNode(Keys.W);
             VaalMoltenShellConnectedSkill = new RangeNode<int>(1, 1, 13);
            // not used atm VaalMoltenShellMaxHP = new RangeNode<int>(50, 0, 100);
             VaalMoltenShellMaxES = new RangeNode<int>(50, 0, 100);
+
+           
+
 
             // my end
 
@@ -273,12 +280,13 @@ namespace BuffUtil
         #endregion
 
         #region VaalGrace
-        [Menu("VaalGrace", 26)] public ToggleNode VaalGrace { get; set; }
+        [Menu("VaalGrace", 28)] public ToggleNode VaalGrace { get; set; }
 
-        [Menu("VaalGrace  Key", 261, 26)] public HotkeyNode VaalGraceKey { get; set; }
+        [Menu("VaalGrace  Key", 281, 28)] public HotkeyNode VaalGraceKey { get; set; }
 
-        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 262, 26)]
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 282, 28)]
         public RangeNode<int> VaalGraceConnectedSkill { get; set; }
+
         #endregion
 
         #region VaalMoltenShell
@@ -293,7 +301,17 @@ namespace BuffUtil
         public RangeNode<int> VaalMoltenShellMaxES { get; set; }
 
 
-        #endregion	
+        #endregion
+
+        //naming it intuitve link didnt work, needs fixing 
+        #region xyz
+        [Menu("IntuitiveLink", 26)] public ToggleNode xyz { get; set; }
+
+        [Menu("IntuitiveLink  Key", 261, 26)] public HotkeyNode xyzKey { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 262, 26)]
+        public RangeNode<int> xyzConnectedSkill { get; set; }
+        #endregion
 
         //end my stuff
 

@@ -183,6 +183,14 @@ namespace BuffUtil
             public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(1);
         }
 
+        public static class xyz
+        {
+            public const string BuffName = "trigger_link_source";
+            public const string Name = "IntuitiveLink";
+            public const string InternalName = "intuitive_link";
+            public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(8);
+        }
+
         //my end
 
         public static class BladeFlurry

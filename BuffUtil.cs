@@ -18,7 +18,7 @@ namespace BuffUtil
 
         private List<Buff> buffs;
         private List<ActorSkill> skills;
-        private List<ActorVaalSkill> vaalSkills;
+        
         private DateTime? currentTime;
         private InputSimulator inputSimulator;
         private Random rand;
@@ -45,12 +45,14 @@ namespace BuffUtil
         private DateTime? lastVitalityCast;
         private DateTime? lastPrecisionCast;
         private DateTime? lastClarityCast;
+        private DateTime? lastIntuitiveLinkCast;
 
         private DateTime? lastVaalDisciplineCast;
         private DateTime? lastVaalGraceCast;
         private DateTime? lastVaalMoltenShellCast;
 
-
+        // from copilot
+        private List<ActorVaalSkill> vaalSkills = new List<ActorVaalSkill>();
 
         //end my
         private float HPPercent;
@@ -117,6 +119,7 @@ namespace BuffUtil
                 HandleVitality();
                 HandlePrecision();
                 HandleClarity();
+                HandleIntuitiveLink();
 
                 HandleVaalDiscipline();
                 HandleVaalGrace();
@@ -796,8 +799,12 @@ namespace BuffUtil
             {
                 if (!Settings.VaalMoltenShell)
                     return;
-                // todo vaal souls check
+                // todo vaal souls check vaalSkills = localPlayer.GetComponent<Actor>().ActorVaalSkills;
                 //var vaalSouls = ExileCore.PoEMemory.MemoryObjects.ActorVaalSkill.CurrVaalSouls
+                //vaalSkills.Exists(x => x.CurrVaalSouls >= x.VaalSoulsPerUse)
+
+
+               // if (SkillInfo.ManageCooldown(SkillInfo.vaalSkill, skill))
 
                 if (lastVaalMoltenShellCast.HasValue && currentTime - lastVaalMoltenShellCast.Value <
                     C.VaalMoltenShell.TimeBetweenCasts)
@@ -835,6 +842,45 @@ namespace BuffUtil
         }
 
 
+        private void HandleIntuitiveLink()
+        {
+            try
+            {
+                if (!Settings.xyz)
+                    return;
+
+                if (lastIntuitiveLinkCast.HasValue && currentTime - lastIntuitiveLinkCast.Value <
+                    C.xyz.TimeBetweenCasts)
+                    return;
+
+                
+                var hasBuff = HasBuff(C.xyz.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.xyz.Name, C.xyz.InternalName,
+                    Settings.xyzConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast IntuitiveLink - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("IntuitiveLink for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.xyzKey.Value);
+                lastIntuitiveLinkCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleIntuitiveLink)}: {ex.StackTrace}", 3f);
+            }
+        }
 
 
         //my stuff end
@@ -1229,8 +1275,10 @@ namespace BuffUtil
                 if (skills == null || skills.Count == 0)
                     return false;
 
+                vaalSkills = player.GetComponent<Actor>().ActorVaalSkills;
+                if (vaalSkills == null || skills.Count == 0)
+                    return false;
 
-                 
                 HPPercent = 100f * playerLife.HPPercentage;
                 MPPercent = 100f * playerLife.MPPercentage;
                 ESPercent = 100f * playerLife.ESPercentage;
