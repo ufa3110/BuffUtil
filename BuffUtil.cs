@@ -888,20 +888,20 @@ namespace BuffUtil
         {
             try
             {
-                if (!Settings.SoulLink)
+                if (!Settings.xyz2)
                     return;
 
                 if (lastSoulLinkCast.HasValue && currentTime - lastSoulLinkCast.Value <
-                    C.SoulLink.TimeBetweenCasts)
+                    C.xyz2.TimeBetweenCasts)
                     return;
 
 
-                var hasBuff = HasBuff(C.SoulLink.BuffName);
+                var hasBuff = HasBuff(C.xyz2.BuffName);
                 if (!hasBuff.HasValue || hasBuff.Value)
                     return;
 
-                var skill = GetUsableSkill(C.SoulLink.Name, C.SoulLink.InternalName,
-                    Settings.SoulLinkConnectedSkill.Value);
+                var skill = GetUsableSkill(C.xyz2.Name, C.xyz2.InternalName,
+                    Settings.xyz2ConnectedSkill.Value);
                 if (skill == null)
                 {
                     if (Settings.Debug)
@@ -914,7 +914,7 @@ namespace BuffUtil
 
                 if (Settings.Debug)
                     LogMessage("IntuitiveLink for real", 1);
-                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.SoulLinkKey.Value);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.xyz2Key.Value);
                 lastSoulLinkCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
             }
             catch (Exception ex)
