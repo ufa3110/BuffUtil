@@ -1374,6 +1374,8 @@ namespace BuffUtil
             foreach (var buff in buffs)
                 LogMessage(buff.Name);
 
+            LogMessage("-------------");
+
             return buffs.Any(b => string.Compare(b.Name, buffName, StringComparison.OrdinalIgnoreCase) == 0);
         }
 
