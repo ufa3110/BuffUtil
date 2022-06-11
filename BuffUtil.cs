@@ -46,6 +46,7 @@ namespace BuffUtil
         private DateTime? lastPrecisionCast;
         private DateTime? lastClarityCast;
         private DateTime? lastIntuitiveLinkCast;
+        private DateTime? lastSoulLinkCast;
 
         private DateTime? lastVaalDisciplineCast;
         private DateTime? lastVaalGraceCast;
@@ -120,6 +121,7 @@ namespace BuffUtil
                 HandlePrecision();
                 HandleClarity();
                 HandleIntuitiveLink();
+                HandleSoulLink();
 
                 HandleVaalDiscipline();
                 HandleVaalGrace();
@@ -879,6 +881,46 @@ namespace BuffUtil
             {
                 if (showErrors)
                     LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleIntuitiveLink)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandleSoulLink()
+        {
+            try
+            {
+                if (!Settings.xyz2)
+                    return;
+
+                if (lastSoulLinkCast.HasValue && currentTime - lastSoulLinkCast.Value <
+                    C.SoulLink.TimeBetweenCasts)
+                    return;
+
+
+                var hasBuff = HasBuff(C.SoulLink.BuffName);
+                if (!hasBuff.HasValue || hasBuff.Value)
+                    return;
+
+                var skill = GetUsableSkill(C.SoulLink.Name, C.SoulLink.InternalName,
+                    Settings.xyz2ConnectedSkill.Value);
+                if (skill == null)
+                {
+                    if (Settings.Debug)
+                        LogMessage("Can not cast IntuitiveLink - not found in usable skills.", 1);
+                    return;
+                }
+
+                if (!NearbyMonsterCheck())
+                    return;
+
+                if (Settings.Debug)
+                    LogMessage("IntuitiveLink for real", 1);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.xyz2Key.Value);
+                lastSoulLinkCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleSoulLink)}: {ex.StackTrace}", 3f);
             }
         }
 

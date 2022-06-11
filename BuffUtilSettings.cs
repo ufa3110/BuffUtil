@@ -315,6 +315,15 @@ namespace BuffUtil
 
         //end my stuff
 
+        #region xyz2
+        [Menu("SoulLink", 27)] public ToggleNode xyz2 { get; set; }
+
+        [Menu("SoulLink  Key", 271, 27)] public HotkeyNode xyz2Key { get; set; }
+
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 272, 27)]
+        public RangeNode<int> xyz2ConnectedSkill { get; set; }
+        #endregion
+
         #region Blood Rage
 
         public ToggleNode Enable { get; set; }

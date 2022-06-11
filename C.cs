@@ -191,6 +191,14 @@ namespace BuffUtil
             public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(8);
         }
 
+        public static class SoulLink
+        {
+            public const string BuffName = "trigger_link_source";
+            public const string Name = "SoulLink";
+            public const string InternalName = "soul_link";
+            public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(8);
+        }
+
         //my end
 
         public static class BladeFlurry
