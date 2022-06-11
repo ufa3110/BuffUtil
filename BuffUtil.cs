@@ -1422,7 +1422,7 @@ namespace BuffUtil
                 localLoadedMonsters = new List<Entity>(loadedMonsters.Where(m => !IsMonster(m)));
             }
 
-            var maxDistance = 300;
+            var maxDistance = 200;
             var maxDistanceSquared = maxDistance * maxDistance;
             var monsterCount = 0;
             foreach (var monster in localLoadedMonsters)
