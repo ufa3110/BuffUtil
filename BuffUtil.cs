@@ -104,6 +104,7 @@ namespace BuffUtil
                 HandleMoltenShell();
                 HandlePhaseRun();
                 HandleWitheringStep();
+                HandleBladeVortex();
 
                 HandleWrath();
                 HandleZealotry();
@@ -913,8 +914,6 @@ namespace BuffUtil
                 if (!NearbyMonsterCheck())
                     return;
 
-                if (Settings.Debug)
-                    LogMessage("IntuitiveLink for real", 1);
                 inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.xyz2Key.Value);
                 lastSoulLinkCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 2.0d));
                 
@@ -964,6 +963,35 @@ namespace BuffUtil
                     inputSimulator.Mouse.RightButtonUp();
                     inputSimulator.Mouse.RightButtonDown();
                 }
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(HandleBloodRage)}: {ex.StackTrace}", 3f);
+            }
+        }
+
+        private void HandleBladeVortex()
+        {
+            try
+            {
+                if (!Settings.BladeVortex)
+                    return;
+
+                if (lastBloodRageCast.HasValue && currentTime - lastBloodRageCast.Value <
+                    C.BladeVortex.TimeBetweenCasts)
+                    return;
+
+                var stacksBuff = GetBuff(C.BladeVortex.BuffName);
+                if (stacksBuff == null)
+                    return;
+
+                var charges = stacksBuff.Charges;
+                if (charges >= Settings.BladeVortexMinCharges.Value)
+                    return;
+
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.BladeVortexKey.Value);
+                lastBloodRageCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
             }
             catch (Exception ex)
             {

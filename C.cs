@@ -224,6 +224,7 @@ namespace BuffUtil
         public static class BladeVortex
         {
             public const string BuffName = "blade_vortex_counter";
+            public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(1);
         }
     }
 }
