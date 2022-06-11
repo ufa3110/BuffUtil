@@ -975,7 +975,7 @@ namespace BuffUtil
         {
             try
             {
-                if (!Settings.xyz3)
+                if (!Settings.BladeVortex)
                     return;
 
                 if (lastBloodRageCast.HasValue && currentTime - lastBloodRageCast.Value <
@@ -987,10 +987,10 @@ namespace BuffUtil
                     return;
 
                 var charges = stacksBuff.Charges;
-                if (charges >= Settings.xyz3Charges.Value)
+                if (charges >= Settings.BladeVortexMinCharges.Value)
                     return;
 
-                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.xyz3Key.Value);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.BladeVortexKey.Value);
                 lastBloodRageCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
             }
             catch (Exception ex)

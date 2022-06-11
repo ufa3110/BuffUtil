@@ -49,6 +49,11 @@ namespace BuffUtil
             BladeFlurryUseLeftClick = new ToggleNode(false);
             BladeFlurryWaitForInfused = new ToggleNode(true);
 
+            BladeVortex = new ToggleNode(false);
+            BladeVortexMinCharges = new RangeNode<int>(6, 1, 6);
+            BladeVortexConnectedSkill = new RangeNode<int>(6, 1, 50);
+            BladeVortexKey = new HotkeyNode(Keys.R);
+
             ScourgeArrow = new ToggleNode(false);
             ScourgeArrowMinCharges = new RangeNode<int>(5, 1, 6);
             ScourgeArrowUseLeftClick = new ToggleNode(false);
@@ -323,22 +328,19 @@ namespace BuffUtil
 
         [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 292, 29)]
         public RangeNode<int> xyz2ConnectedSkill { get; set; }
-
-        [Menu("Min charges", "Minimal amount of BF charges", 292, 29)]
-        public RangeNode<int> xyz2Charges { get; set; }
         #endregion
 
         #region Blade Vortex
 
-        [Menu("Blade Vortex", "Use mouse click to release Blade Vortex charges", 40)] public ToggleNode xyz3 { get; set; }
+        [Menu("Blade Vortex", "Use mouse click to release Blade Vortex charges", 40)] public ToggleNode BladeVortex { get; set; }
 
         [Menu("Min charges", "Minimal amount of BF charges", 401, 40)]
-        public RangeNode<int> xyz3Charges { get; set; }
+        public RangeNode<int> BladeVortexMinCharges { get; set; }
 
-        [Menu("BladeVortex  Key", 402, 40)] public HotkeyNode xyz3Key { get; set; }
+        [Menu("BladeVortex  Key", 402, 40)] public HotkeyNode BladeVortexKey { get; set; }
 
         [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 403, 40)]
-        public RangeNode<int> xyz3ConnectedSkill { get; set; }
+        public RangeNode<int> BladeVortexConnectedSkill { get; set; }
 
         #endregion
 
