@@ -1466,7 +1466,7 @@ namespace BuffUtil
         {
             try
             {
-                if (!player.IsAlive || !player.IsHostile || player.IsHidden ||
+                if (!player.IsAlive || player.IsHidden ||
                     !player.IsValid)
                     return false;
 
