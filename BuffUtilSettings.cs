@@ -123,14 +123,15 @@ namespace BuffUtil
             xyzKey = new HotkeyNode(Keys.R);
             xyzConnectedSkill = new RangeNode<int>(1, 1, 13);
 
+            SoulLink = new ToggleNode(false);
+            SoulLinkKey = new HotkeyNode(Keys.R);
+            SoulLinkConnectedSkill = new RangeNode<int>(1, 1, 13);
+
             VaalMoltenShell = new ToggleNode(false);
             VaalMoltenShellKey = new HotkeyNode(Keys.W);
             VaalMoltenShellConnectedSkill = new RangeNode<int>(1, 1, 13);
            // not used atm VaalMoltenShellMaxHP = new RangeNode<int>(50, 0, 100);
             VaalMoltenShellMaxES = new RangeNode<int>(50, 0, 100);
-
-           
-
 
             // my end
 
@@ -316,11 +317,11 @@ namespace BuffUtil
         //end my stuff
 
         #region SoulLink
-        [Menu("SoulLink", 27)] public ToggleNode SoulLink { get; set; }
+        [Menu("SoulLink", 29)] public ToggleNode SoulLink { get; set; }
 
-        [Menu("SoulLink  Key", 271, 27)] public HotkeyNode SoulLinkKey { get; set; }
+        [Menu("SoulLink  Key", 291, 29)] public HotkeyNode SoulLinkKey { get; set; }
 
-        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 272, 27)]
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 292, 29)]
         public RangeNode<int> SoulLinkConnectedSkill { get; set; }
         #endregion
 
