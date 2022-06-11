@@ -50,8 +50,8 @@ namespace BuffUtil
             BladeFlurryWaitForInfused = new ToggleNode(true);
 
             BladeVortex = new ToggleNode(false);
-            BladeVortexMinCharges = new RangeNode<int>(6, 1, 6);
-            BladeVortexConnectedSkill = new RangeNode<int>(6, 1, 50);
+            BladeVortexMinCharges = new RangeNode<int>(6, 1, 50);
+            BladeVortexConnectedSkill = new RangeNode<int>(6, 1, 8);
             BladeVortexKey = new HotkeyNode(Keys.R);
 
             ScourgeArrow = new ToggleNode(false);
