@@ -1430,7 +1430,7 @@ namespace BuffUtil
                     monsterCount++;
 
             LogMessage($"Players count: {monsterCount}");
-            return monsterCount;
+            return monsterCount - 1;
         }
 
         private bool NearbyMonsterCheck()
