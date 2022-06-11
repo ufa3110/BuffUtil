@@ -332,9 +332,9 @@ namespace BuffUtil
         [Menu("Min charges", "Minimal amount of BF charges", 401, 7)]
         public RangeNode<int> BladeVortexMinCharges { get; set; }
 
-        [Menu("BladeVortex  Key", 401, 40)] public HotkeyNode xyz3Key { get; set; }
+        [Menu("BladeVortex  Key", 402, 40)] public HotkeyNode BladeVortexKey { get; set; }
 
-        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 402, 40)]
+        [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 403, 40)]
         public RangeNode<int> BladeVortexConnectedSkill { get; set; }
 
         #endregion
