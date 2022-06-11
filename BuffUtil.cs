@@ -975,7 +975,7 @@ namespace BuffUtil
         {
             try
             {
-                if (!Settings.xyz3)
+                if (!Settings.BladeVortex)
                     return;
 
                 if (lastBloodRageCast.HasValue && currentTime - lastBloodRageCast.Value <
