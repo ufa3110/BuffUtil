@@ -329,7 +329,7 @@ namespace BuffUtil
 
         [Menu("Blade Vortex", "Use mouse click to release Blade Vortex charges", 40)] public ToggleNode BladeVortex { get; set; }
 
-        [Menu("Min charges", "Minimal amount of BF charges", 401, 7)]
+        [Menu("Min charges", "Minimal amount of BF charges", 401, 40)]
         public RangeNode<int> BladeVortexMinCharges { get; set; }
 
         [Menu("BladeVortex  Key", 402, 40)] public HotkeyNode BladeVortexKey { get; set; }
