@@ -1468,7 +1468,7 @@ namespace BuffUtil
             try
             {
                 if (!player.IsAlive || player.IsHidden || !player.IsTargetable ||
-                    !player.IsValid || !player.HasComponent<Player>())
+                    !player.IsValid || player.HasComponent<Monster>())
                     return false;
 
                 var monsterPosition = player.Pos;
