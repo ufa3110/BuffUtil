@@ -1371,9 +1371,6 @@ namespace BuffUtil
                 return null;
             }
 
-            foreach (var buff in buffs)
-                LogMessage(buff.Name);
-
             return buffs.Any(b => string.Compare(b.Name, buffName, StringComparison.OrdinalIgnoreCase) == 0);
         }
 
