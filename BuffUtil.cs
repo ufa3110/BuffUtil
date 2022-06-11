@@ -895,8 +895,9 @@ namespace BuffUtil
                     C.xyz2.TimeBetweenCasts)
                     return;
 
+                var playersCount = NearbyPlayersCount();
 
-                var hasBuff = HasBuff(C.xyz2.BuffName);
+                var hasBuff = HasBuffs(C.xyz2.BuffName, playersCount);
                 if (!hasBuff.HasValue || hasBuff.Value)
                     return;
 
@@ -916,6 +917,7 @@ namespace BuffUtil
                     LogMessage("IntuitiveLink for real", 1);
                 inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.xyz2Key.Value);
                 lastSoulLinkCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 2.0d));
+                
             }
             catch (Exception ex)
             {
@@ -1334,7 +1336,6 @@ namespace BuffUtil
                 {
                     movementStopwatch.Reset();
                 }
-                
 
                 return true;
             }
@@ -1374,6 +1375,18 @@ namespace BuffUtil
             return buffs.Any(b => string.Compare(b.Name, buffName, StringComparison.OrdinalIgnoreCase) == 0);
         }
 
+        private bool? HasBuffs(string buffName, int count)
+        {
+            if (buffs == null)
+            {
+                if (showErrors)
+                    LogError("Requested buff check, but buff list is empty.", 1);
+                return null;
+            }
+
+            return buffs.Where(b => string.Compare(b.Name, buffName, StringComparison.OrdinalIgnoreCase) == 0).Count() >= count;
+        }
+
         private Buff GetBuff(string buffName)
         {
             if (buffs == null)
@@ -1399,6 +1412,26 @@ namespace BuffUtil
                 (s.Name == skillName || s.InternalName == skillInternalName));
         }
 
+        private int NearbyPlayersCount()
+        {
+            var playerPosition = GameController.Game.IngameState.Data.LocalPlayer.GetComponent<Render>().Pos;
+
+            List<Entity> localLoadedMonsters;
+            lock (loadedMonstersLock)
+            {
+                localLoadedMonsters = new List<Entity>(loadedMonsters.Where(m => IsMonster(m)));
+            }
+
+            var maxDistance = 500;
+            var maxDistanceSquared = maxDistance * maxDistance;
+            var monsterCount = 0;
+            foreach (var monster in localLoadedMonsters)
+                if (IsValidNearbyPlayer(monster, playerPosition, maxDistanceSquared))
+                    monsterCount++;
+
+            return monsterCount;
+        }
+
         private bool NearbyMonsterCheck()
         {
             if (!Settings.RequireMinMonsterCount.Value)
@@ -1412,7 +1445,7 @@ namespace BuffUtil
             List<Entity> localLoadedMonsters;
             lock (loadedMonstersLock)
             {
-                localLoadedMonsters = new List<Entity>(loadedMonsters);
+                localLoadedMonsters = new List<Entity>(loadedMonsters.Where(m => IsMonster(m)));
             }
 
             var maxDistance = Settings.NearbyMonsterMaxDistance.Value;
@@ -1427,6 +1460,30 @@ namespace BuffUtil
             if (Settings.Debug.Value && !result)
                 LogMessage("NearbyMonstersCheck failed.", 1);
             return result;
+        }
+
+        private bool IsValidNearbyPlayer(Entity player, Vector3 playerPosition, int maxDistanceSquared)
+        {
+            try
+            {
+                if (!player.IsAlive || !player.IsHostile || player.IsHidden ||
+                    !player.IsValid)
+                    return false;
+
+                var monsterPosition = player.Pos;
+
+                var xDiff = playerPosition.X - monsterPosition.X;
+                var yDiff = playerPosition.Y - monsterPosition.Y;
+                var monsterDistanceSquare = xDiff * xDiff + yDiff * yDiff;
+
+                return monsterDistanceSquare <= maxDistanceSquared;
+            }
+            catch (Exception ex)
+            {
+                if (showErrors)
+                    LogError($"Exception in {nameof(BuffUtil)}.{nameof(IsValidNearbyPlayer)}: {ex.StackTrace}", 3f);
+                return false;
+            }
         }
 
         private bool IsValidNearbyMonster(Entity monster, Vector3 playerPosition, int maxDistanceSquared)
@@ -1457,9 +1514,6 @@ namespace BuffUtil
 
         public override void EntityAdded(Entity entity)
         {
-            if (!IsMonster(entity))
-                return;
-
             lock (loadedMonstersLock)
             {
                 loadedMonsters.Add(entity);
