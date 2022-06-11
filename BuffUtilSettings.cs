@@ -325,7 +325,7 @@ namespace BuffUtil
         public RangeNode<int> xyz2ConnectedSkill { get; set; }
 
         [Menu("Min charges", "Minimal amount of BF charges", 292, 29)]
-        public RangeNode<int> xyz3Charges { get; set; }
+        public RangeNode<int> xyz2Charges { get; set; }
         #endregion
 
         #region Blade Vortex
