@@ -1429,6 +1429,7 @@ namespace BuffUtil
                 if (IsValidNearbyPlayer(monster, playerPosition, maxDistanceSquared))
                     monsterCount++;
 
+            LogMessage($"Players count: {monsterCount}");
             return monsterCount - 1;
         }
 
@@ -1466,7 +1467,7 @@ namespace BuffUtil
         {
             try
             {
-                if (!player.IsAlive || player.IsHidden ||
+                if (!player.IsAlive || player.IsHidden || player.IsHostile ||
                     !player.IsValid)
                     return false;
 
