@@ -983,12 +983,12 @@ namespace BuffUtil
                     return;
 
                 var stacksBuff = GetBuff(C.BladeVortex.BuffName);
-                if (stacksBuff == null)
-                    return;
-
-                var charges = stacksBuff.Charges;
-                if (charges >= Settings.BladeVortexMinCharges.Value)
-                    return;
+                if (stacksBuff != null)
+                {
+                    var charges = stacksBuff.Charges;
+                    if (charges >= Settings.BladeVortexMinCharges.Value)
+                        return;
+                }
 
                 inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.BladeVortexKey.Value);
                 lastBloodRageCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
