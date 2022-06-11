@@ -1419,10 +1419,10 @@ namespace BuffUtil
             List<Entity> localLoadedMonsters;
             lock (loadedMonstersLock)
             {
-                localLoadedMonsters = new List<Entity>(loadedMonsters.Where(m => IsMonster(m)));
+                localLoadedMonsters = new List<Entity>(loadedMonsters.Where(m => !IsMonster(m)));
             }
 
-            var maxDistance = 500;
+            var maxDistance = 300;
             var maxDistanceSquared = maxDistance * maxDistance;
             var monsterCount = 0;
             foreach (var monster in localLoadedMonsters)
