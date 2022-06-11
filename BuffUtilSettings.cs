@@ -327,15 +327,15 @@ namespace BuffUtil
 
         #region Blade Vortex
 
-        [Menu("Blade Vortex", "Use mouse click to release Blade Vortex charges", 30)] public ToggleNode BladeVortex { get; set; }
+        [Menu("Blade Vortex", "Use mouse click to release Blade Vortex charges", 30)] public ToggleNode xyz3 { get; set; }
 
         [Menu("Min charges", "Minimal amount of BF charges", 71, 7)]
         public RangeNode<int> BladeVortexMinCharges { get; set; }
 
-        [Menu("BladeVortex  Key", 301, 30)] public HotkeyNode BladeVortexKey { get; set; }
+        [Menu("BladeVortex  Key", 301, 30)] public HotkeyNode xyz3Key { get; set; }
 
         [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 302, 30)]
-        public RangeNode<int> BladeVortexConnectedSkill { get; set; }
+        public RangeNode<int> xyz3ConnectedSkill { get; set; }
 
         #endregion
 
