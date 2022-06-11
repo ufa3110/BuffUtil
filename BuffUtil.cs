@@ -1429,8 +1429,7 @@ namespace BuffUtil
                 if (IsValidNearbyPlayer(monster, playerPosition, maxDistanceSquared))
                     monsterCount++;
 
-            LogMessage($"Players count: {monsterCount}");
-            return monsterCount;
+            return monsterCount - 1;
         }
 
         private bool NearbyMonsterCheck()
