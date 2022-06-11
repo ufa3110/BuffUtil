@@ -915,7 +915,7 @@ namespace BuffUtil
                 if (Settings.Debug)
                     LogMessage("IntuitiveLink for real", 1);
                 inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.xyz2Key.Value);
-                lastSoulLinkCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+                lastSoulLinkCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 2.0d));
             }
             catch (Exception ex)
             {
@@ -1270,7 +1270,7 @@ namespace BuffUtil
                 if (Settings.Debug)
                     LogMessage("Casting Withering Step", 1);
                 inputSimulator.Keyboard.KeyPress((VirtualKeyCode) Settings.WitheringStepKey.Value);
-                lastWitheringStepCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+                lastWitheringStepCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.5));
             }
             catch (Exception ex)
             {
@@ -1370,11 +1370,6 @@ namespace BuffUtil
                     LogError("Requested buff check, but buff list is empty.", 1);
                 return null;
             }
-
-            foreach (var buff in buffs)
-                LogMessage(buff.Name);
-
-            LogMessage("-------------");
 
             return buffs.Any(b => string.Compare(b.Name, buffName, StringComparison.OrdinalIgnoreCase) == 0);
         }
