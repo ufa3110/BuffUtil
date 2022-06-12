@@ -84,7 +84,7 @@ namespace BuffUtil
             base.OnPluginDestroyForHotReload();
         }
 
-        public override void Render()
+        public override Job Tick()
         {
             // Should move to Tick?
             if (OnPreExecute())
