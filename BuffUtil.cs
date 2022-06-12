@@ -19,7 +19,7 @@ namespace BuffUtil
         private List<Buff> buffs;
         private List<ActorSkill> skills;
         
-        private DateTime? currentTime;
+        private DateTime? currentTime {get => DateTime.Now };
         private InputSimulator inputSimulator;
         private Random rand;
         private DateTime? lastBloodRageCast;
@@ -1381,7 +1381,6 @@ namespace BuffUtil
             {
                 buffs = null;
                 skills = null;
-                currentTime = null;
                 nearbyMonsterCount = null;
             }
             catch (Exception ex)
