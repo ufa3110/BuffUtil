@@ -196,7 +196,7 @@ namespace BuffUtil
             public const string BuffName = "soul_link_source";
             public const string Name = "SoulLink";
             public const string InternalName = "soul_link";
-            public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(20);
+            public static readonly TimeSpan TimeBetweenCasts = TimeSpan.FromSeconds(0.5f);
         }
 
         //my end

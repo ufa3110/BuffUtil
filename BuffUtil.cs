@@ -916,7 +916,8 @@ namespace BuffUtil
 
                 inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.xyz2Key.Value);
                 lastSoulLinkCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 2.0d));
-                
+                Graphics.DrawText($"last soulLinkCast = {lastSoulLinkCast.Value.ToString()}");
+                Graphics.DrawText($"Current time = {currentTime.Value.ToString()}");
             }
             catch (Exception ex)
             {
