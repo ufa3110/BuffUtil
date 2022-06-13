@@ -20,7 +20,7 @@ namespace BuffUtil
         private List<Buff> buffs;
         private List<ActorSkill> skills;
         
-        private DateTime? currentTime {get => DateTime.Now };
+        private DateTime? currentTime { get => DateTime.Now; }
         private InputSimulator inputSimulator;
         private Random rand;
         private DateTime? lastBloodRageCast;
@@ -85,7 +85,7 @@ namespace BuffUtil
             base.OnPluginDestroyForHotReload();
         }
 
-        public override Job Tick()
+        public override void Render()
         {
             // Should move to Tick?
             if (OnPreExecute())
