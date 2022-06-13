@@ -8,6 +8,7 @@ using ExileCore;
 using ExileCore.PoEMemory.Components;
 using ExileCore.PoEMemory.MemoryObjects;
 using SharpDX;
+using System.Threading;
 
 namespace BuffUtil
 {
@@ -889,21 +890,21 @@ namespace BuffUtil
         {
             try
             {
-                if (!Settings.xyz2)
+                if (!Settings.SoulLink)
                     return;
 
                 if (lastSoulLinkCast.HasValue && currentTime - lastSoulLinkCast.Value <
                     C.xyz2.TimeBetweenCasts)
                     return;
 
-                var playersCount = NearbyPlayersCount();
+                var playersCount = Settings.SoulLinkSkillsCount.Value;
 
                 var hasBuff = HasBuffs(C.xyz2.BuffName, playersCount);
                 if (!hasBuff.HasValue || hasBuff.Value)
                     return;
 
                 var skill = GetUsableSkill(C.xyz2.Name, C.xyz2.InternalName,
-                    Settings.xyz2ConnectedSkill.Value);
+                    Settings.SoulLinkConnectedSkill.Value);
                 if (skill == null)
                 {
                     if (Settings.Debug)
@@ -911,13 +912,9 @@ namespace BuffUtil
                     return;
                 }
 
-                if (!NearbyMonsterCheck())
-                    return;
-
-                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.xyz2Key.Value);
+                inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.SoulLinkKey.Value);
                 lastSoulLinkCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 2.0d));
-                Graphics.DrawText($"last soulLinkCast = {lastSoulLinkCast.Value.ToString()}");
-                Graphics.DrawText($"Current time = {currentTime.Value.ToString()}");
+                Thread.Sleep(1000);
             }
             catch (Exception ex)
             {
@@ -1438,27 +1435,6 @@ namespace BuffUtil
 
             return skills.FirstOrDefault(s =>
                 (s.Name == skillName || s.InternalName == skillInternalName));
-        }
-
-        private int NearbyPlayersCount()
-        {
-            var playerPosition = GameController.Game.IngameState.Data.LocalPlayer.GetComponent<Render>().Pos;
-
-            List<Entity> localLoadedMonsters;
-            lock (loadedMonstersLock)
-            {
-                localLoadedMonsters = new List<Entity>(loadedMonsters.Where(m => !IsMonster(m)));
-            }
-
-            var maxDistance = 200;
-            var maxDistanceSquared = maxDistance * maxDistance;
-            var monsterCount = 0;
-            foreach (var monster in localLoadedMonsters)
-                if (IsValidNearbyPlayer(monster, playerPosition, maxDistanceSquared))
-                    monsterCount++;
-
-            LogMessage($"Players count: {monsterCount}");
-            return monsterCount - 1;
         }
 
         private bool NearbyMonsterCheck()

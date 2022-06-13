@@ -128,9 +128,10 @@ namespace BuffUtil
             xyzKey = new HotkeyNode(Keys.R);
             xyzConnectedSkill = new RangeNode<int>(1, 1, 13);
 
-            xyz2 = new ToggleNode(false);
-            xyz2Key = new HotkeyNode(Keys.R);
-            xyz2ConnectedSkill = new RangeNode<int>(1, 1, 13);
+            SoulLink = new ToggleNode(false);
+            SoulLinkKey = new HotkeyNode(Keys.R);
+            SoulLinkConnectedSkill = new RangeNode<int>(1, 1, 13);
+            SoulLinkSkillsCount = new RangeNode<int>(1,1,6);
 
             VaalMoltenShell = new ToggleNode(false);
             VaalMoltenShellKey = new HotkeyNode(Keys.W);
@@ -322,12 +323,16 @@ namespace BuffUtil
         //end my stuff
 
         #region SoulLink
-        [Menu("SoulLink", 29)] public ToggleNode xyz2 { get; set; }
+        [Menu("SoulLink", 29)] public ToggleNode SoulLink { get; set; }
 
-        [Menu("SoulLink  Key", 291, 29)] public HotkeyNode xyz2Key { get; set; }
+        [Menu("SoulLink  Key", 291, 29)] public HotkeyNode SoulLinkKey { get; set; }
 
         [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 292, 29)]
-        public RangeNode<int> xyz2ConnectedSkill { get; set; }
+        public RangeNode<int> SoulLinkConnectedSkill { get; set; }
+
+        [Menu("Buffs count", "Set the count of party members", 292, 29)]
+        public RangeNode<int> SoulLinkSkillsCount { get; set; }
+
         #endregion
 
         #region Blade Vortex
