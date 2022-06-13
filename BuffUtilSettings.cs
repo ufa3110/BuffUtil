@@ -330,7 +330,7 @@ namespace BuffUtil
         [Menu("Connected Skill", "Set the skill slot (1 = top left, 8 = bottom right)", 292, 29)]
         public RangeNode<int> SoulLinkConnectedSkill { get; set; }
 
-        [Menu("Buffs count", "Set the count of party members", 292, 29)]
+        [Menu("Buffs count", "Set the count of party members", 293, 29)]
         public RangeNode<int> SoulLinkSkillsCount { get; set; }
 
         #endregion
