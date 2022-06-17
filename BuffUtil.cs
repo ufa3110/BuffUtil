@@ -896,21 +896,21 @@ namespace BuffUtil
                     return;
 
                 if (lastSoulLinkCast.HasValue && currentTime - lastSoulLinkCast.Value <
-                    C.xyz2.TimeBetweenCasts)
+                    C.SoulLink.TimeBetweenCasts)
                     return;
 
                 var playersCount = GameController.IngameState.Data.ServerData.NearestPlayers.Count;
 
-                var hasBuff = HasBuffs(C.xyz2.BuffName, playersCount);
+                var hasBuff = HasBuffs(C.SoulLink.BuffName, playersCount);
                 if (!hasBuff.HasValue || hasBuff.Value)
                     return;
 
-                var skill = GetUsableSkill(C.xyz2.Name, C.xyz2.InternalName,
+                var skill = GetUsableSkill(C.SoulLink.Name, C.SoulLink.InternalName,
                     Settings.SoulLinkConnectedSkill.Value);
                 if (skill == null)
                 {
                     if (Settings.Debug)
-                        LogMessage("Can not cast IntuitiveLink - not found in usable skills.", 1);
+                        LogMessage("Can not cast SoulLink - not found in usable skills.", 1);
                     return;
                 }
 
