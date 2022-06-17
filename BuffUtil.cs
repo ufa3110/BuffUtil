@@ -890,6 +890,8 @@ namespace BuffUtil
         {
             try
             {
+                Graphics.DrawText($"Nearby players count: ", new Vector2(100, 100),Color.Red);
+
                 if (!Settings.SoulLink)
                     return;
 
@@ -897,7 +899,7 @@ namespace BuffUtil
                     C.xyz2.TimeBetweenCasts)
                     return;
 
-                var playersCount = Settings.SoulLinkSkillsCount.Value;
+                var playersCount = GameController.IngameState.Data.ServerData.NearestPlayers.Count;
 
                 var hasBuff = HasBuffs(C.xyz2.BuffName, playersCount);
                 if (!hasBuff.HasValue || hasBuff.Value)
@@ -914,6 +916,7 @@ namespace BuffUtil
 
                 inputSimulator.Keyboard.KeyPress((VirtualKeyCode)Settings.SoulLinkKey.Value);
                 lastSoulLinkCast = currentTime + TimeSpan.FromSeconds(rand.NextDouble(0, 0.2));
+                Thread.Sleep(100 + rand.Next(0, 100));
             }
             catch (Exception ex)
             {
@@ -1471,7 +1474,7 @@ namespace BuffUtil
             try
             {
                 if (!player.IsAlive || player.IsHidden || !player.IsTargetable ||
-                    !player.IsValid || player.HasComponent<Monster>())
+                    !player.IsValid || player.HasComponent<Monster>() || !player.HasComponent<Player>())
                     return false;
 
                 var monsterPosition = player.Pos;
